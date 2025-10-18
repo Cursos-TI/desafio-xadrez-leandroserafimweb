@@ -7,8 +7,8 @@
 int main() {
     // -------------------------------
     // Simulação de Movimento de Peças de Xadrez
-    // Peças: Torre, Bispo e Rainha
-    // Cada uma utiliza uma estrutura de repetição diferente.
+    // Peças: Torre, Bispo, Rainha e Cavalo
+    // Cada peça utiliza uma estrutura de repetição diferente.
     // -------------------------------
 
     // Definindo o número de casas que cada peça irá se mover
@@ -18,9 +18,8 @@ int main() {
 
     // -------------------------------
     // Movimento da TORRE
-    // A Torre move-se em linha reta (horizontal ou vertical).
-    // Aqui, ela se moverá 5 casas para a DIREITA.
-    // Estrutura de repetição: FOR
+    // Estrutura: FOR
+    // Movimento: 5 casas para a DIREITA
     // -------------------------------
     printf("Movimento da TORRE:\n");
     for (int i = 1; i <= movimentoTorre; i++) {
@@ -30,9 +29,8 @@ int main() {
 
     // -------------------------------
     // Movimento do BISPO
-    // O Bispo move-se na diagonal, ou seja, combina duas direções.
-    // Aqui, ele se moverá 5 casas na diagonal para CIMA e DIREITA.
-    // Estrutura de repetição: WHILE
+    // Estrutura: WHILE
+    // Movimento: 5 casas na diagonal (CIMA e DIREITA)
     // -------------------------------
     printf("Movimento do BISPO:\n");
     int j = 1;
@@ -44,9 +42,8 @@ int main() {
 
     // -------------------------------
     // Movimento da RAINHA
-    // A Rainha pode mover-se em todas as direções.
-    // Aqui, ela se moverá 8 casas para a ESQUERDA.
-    // Estrutura de repetição: DO-WHILE
+    // Estrutura: DO-WHILE
+    // Movimento: 8 casas para a ESQUERDA
     // -------------------------------
     printf("Movimento da RAINHA:\n");
     int k = 1;
@@ -54,6 +51,30 @@ int main() {
         printf("Esquerda (%d casa)\n", k);
         k++;
     } while (k <= movimentoRainha);
+    printf("\n");
+
+    // -------------------------------
+    // Movimento do CAVALO
+    // Estruturas: FOR (externo) + WHILE (interno)
+    // Movimento: duas casas para BAIXO e uma casa para a ESQUERDA (em forma de "L")
+    // -------------------------------
+    printf("Movimento do CAVALO:\n");
+
+    const int movimentoBaixo = 2;   // Duas casas para baixo
+    const int movimentoEsquerda = 1; // Uma casa para a esquerda
+
+    // Primeiro movimento: duas casas para BAIXO (loop for)
+    for (int x = 1; x <= movimentoBaixo; x++) {
+        printf("Baixo (%d casa)\n", x);
+    }
+
+    // Segundo movimento: uma casa para a ESQUERDA (loop while)
+    int y = 1;
+    while (y <= movimentoEsquerda) {
+        printf("Esquerda (%d casa)\n", y);
+        y++;
+    }
+
     printf("\n");
 
     // Fim do programa
