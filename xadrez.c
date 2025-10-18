@@ -3,82 +3,114 @@
 // Desafio de Xadrez - MateCheck
 // Este código inicial serve como base para o desenvolvimento do sistema de movimentação das peças de xadrez.
 // O objetivo é utilizar estruturas de repetição e funções para determinar os limites de movimentação dentro do jogo.
+// -------------------------------------------
+// Função recursiva para mover a TORRE
+// Movimento: 5 casas para a DIREITA
+// -------------------------------------------
+void moverTorre(int casas, int atual) {
+    // Condição de parada da recursão
+    if (atual > casas) return;
 
+    printf("Direita (%d casa)\n", atual);
+
+    // Chamada recursiva para a próxima casa
+    moverTorre(casas, atual + 1);
+}
+
+// -------------------------------------------
+// Função recursiva para mover a RAINHA
+// Movimento: 8 casas para a ESQUERDA
+// -------------------------------------------
+void moverRainha(int casas, int atual) {
+    if (atual > casas) return;
+
+    printf("Esquerda (%d casa)\n", atual);
+
+    // Chamada recursiva
+    moverRainha(casas, atual + 1);
+}
+
+// -------------------------------------------
+// Função recursiva para o BISPO
+// Movimento: 5 casas na diagonal (CIMA + DIREITA)
+// Implementado com recursão + loops aninhados
+// Loop externo: movimento vertical
+// Loop interno: movimento horizontal
+// -------------------------------------------
+void moverBispo(int casas, int atualVertical) {
+    if (atualVertical > casas) return;
+
+    printf("Movimento %d:\n", atualVertical);
+
+    // Loop interno (horizontal)
+    for (int h = 1; h <= 1; h++) {
+        printf("Cima, Direita (%d casa)\n", atualVertical);
+    }
+
+    // Chamada recursiva para o próximo passo
+    moverBispo(casas, atualVertical + 1);
+}
+
+// -------------------------------------------
+// Movimento do CAVALO
+// Loops aninhados complexos
+// Movimento: duas casas para CIMA e uma para a DIREITA
+// Usa break e continue para controlar o fluxo
+// -------------------------------------------
+void moverCavalo() {
+    const int movimentoCima = 2;
+    const int movimentoDireita = 1;
+
+    printf("Movimento do CAVALO:\n");
+
+    // Loop externo: movimento vertical (para cima)
+    for (int i = 1; i <= movimentoCima; i++) {
+        if (i == 0) continue; // não necessário aqui, apenas ilustrativo
+        printf("Cima (%d casa)\n", i);
+
+        // Loop interno: movimento horizontal (para direita)
+        for (int j = 1; j <= movimentoDireita; j++) {
+            if (i > movimentoCima) break; // condição de parada
+            if (j == 0) continue;
+            if (i == movimentoCima) {
+                printf("Direita (%d casa)\n", j);
+            }
+        }
+    }
+}
 int main() {
-    // -------------------------------
-    // Simulação de Movimento de Peças de Xadrez
-    // Peças: Torre, Bispo, Rainha e Cavalo
-    // Cada peça utiliza uma estrutura de repetição diferente.
-    // -------------------------------
-
-    // Definindo o número de casas que cada peça irá se mover
+    // Quantidade de casas definidas
     const int movimentoTorre = 5;
     const int movimentoBispo = 5;
     const int movimentoRainha = 8;
 
     // -------------------------------
-    // Movimento da TORRE
-    // Estrutura: FOR
-    // Movimento: 5 casas para a DIREITA
+    // Movimento da TORRE (recursivo)
     // -------------------------------
     printf("Movimento da TORRE:\n");
-    for (int i = 1; i <= movimentoTorre; i++) {
-        printf("Direita (%d casa)\n", i);
-    }
+    moverTorre(movimentoTorre, 1);
     printf("\n");
 
     // -------------------------------
-    // Movimento do BISPO
-    // Estrutura: WHILE
-    // Movimento: 5 casas na diagonal (CIMA e DIREITA)
+    // Movimento do BISPO (recursivo + loops aninhados)
     // -------------------------------
     printf("Movimento do BISPO:\n");
-    int j = 1;
-    while (j <= movimentoBispo) {
-        printf("Cima, Direita (%d casa)\n", j);
-        j++;
-    }
+    moverBispo(movimentoBispo, 1);
     printf("\n");
 
     // -------------------------------
-    // Movimento da RAINHA
-    // Estrutura: DO-WHILE
-    // Movimento: 8 casas para a ESQUERDA
+    // Movimento da RAINHA (recursivo)
     // -------------------------------
     printf("Movimento da RAINHA:\n");
-    int k = 1;
-    do {
-        printf("Esquerda (%d casa)\n", k);
-        k++;
-    } while (k <= movimentoRainha);
+    moverRainha(movimentoRainha, 1);
     printf("\n");
 
     // -------------------------------
-    // Movimento do CAVALO
-    // Estruturas: FOR (externo) + WHILE (interno)
-    // Movimento: duas casas para BAIXO e uma casa para a ESQUERDA (em forma de "L")
+    // Movimento do CAVALO (loops complexos)
     // -------------------------------
-    printf("Movimento do CAVALO:\n");
-
-    const int movimentoBaixo = 2;   // Duas casas para baixo
-    const int movimentoEsquerda = 1; // Uma casa para a esquerda
-
-    // Primeiro movimento: duas casas para BAIXO (loop for)
-    for (int x = 1; x <= movimentoBaixo; x++) {
-        printf("Baixo (%d casa)\n", x);
-    }
-
-    // Segundo movimento: uma casa para a ESQUERDA (loop while)
-    int y = 1;
-    while (y <= movimentoEsquerda) {
-        printf("Esquerda (%d casa)\n", y);
-        y++;
-    }
-
+    moverCavalo();
     printf("\n");
 
-    // Fim do programa
     printf("Simulação de movimentos concluída!\n");
-
     return 0;
 }
